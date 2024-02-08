@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 11:30:24 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/08 18:41:31 by arazzok          ###   ########.fr       */
+/*   Created: 2024/02/08 18:36:26 by arazzok           #+#    #+#             */
+/*   Updated: 2024/02/08 18:38:52 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
 
-# include <pthread.h>
-# include <stdio.h>
-
-typedef struct s_args
+int	ft_atoi(const char *str)
 {
-	int	nb_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	nb_each_philo_eat;
-}		t_args;
+	int	i;
+	int	sgn;
+	int	res;
 
-/* ###@ ERROR */
-int		check_args(int argc, char **argv);
-
-/* ###@ UTILS */
-int		ft_atoi(const char *str);
-
-#endif
+	i = 0;
+	sgn = 1;
+	res = 0;
+	if (str[i] == '-')
+	{
+		sgn = -1;
+		i++;
+	}
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	{
+		res = (res * 10) + (str[i] - '0');
+		i++;
+	}
+	return (sgn * res);
+}
