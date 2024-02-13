@@ -7,7 +7,7 @@ OBJ_DIR       = obj/
 CC            = gcc
 CFLAGS        = -Wall -Wextra -Werror
 
-SRC_FILES     = main error
+SRC_FILES     = main error utils
 
 SRC           = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ           = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
