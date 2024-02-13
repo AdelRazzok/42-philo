@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 11:30:24 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 12:15:20 by arazzok          ###   ########.fr       */
+/*   Created: 2024/02/13 11:53:00 by arazzok           #+#    #+#             */
+/*   Updated: 2024/02/13 12:15:33 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
 
-# include <pthread.h>
-# include <stdio.h>
-# include <stdlib.h>
-
-typedef struct s_args
+void    *thread_routine(void *data)
 {
-	int	nb_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	nb_each_philo_eat;
-}		t_args;
+    pthread_t   thread;
 
-/* ###@ ERROR */
-int		check_args(int argc, char **argv);
-
-/* ###@ UTILS */
-int		ft_atoi(const char *str);
-
-/* ###@ THREADS */
-void	*thread_routine(void *data);
-
-#endif
+    (void)data;
+    thread = pthread_self();
+    printf("Thread [%ld] is running\n", thread);
+    return (NULL);
+}

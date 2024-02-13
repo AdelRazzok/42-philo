@@ -5,9 +5,9 @@ SRC_DIR       = src/
 OBJ_DIR       = obj/
 
 CC            = gcc
-CFLAGS        = -Wall -Wextra -Werror
+CFLAGS        = -Wall -Wextra -Werror -pthread -fsanitize=thread -g
 
-SRC_FILES     = main error utils
+SRC_FILES     = main error utils threads
 
 SRC           = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ           = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
