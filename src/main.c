@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:29:52 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 16:55:14 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:26:44 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	main(int argc, char **argv)
 	if (!check_args(argc, argv))
 		return (1);
 	if (_init_agrs(argv, &args))
+		return (1);
+	if (process_threads(&args))
 		return (1);
 	return (0);
 }

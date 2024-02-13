@@ -6,27 +6,11 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:21:41 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 16:53:37 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:06:05 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static int	_is_str_numeric(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
-	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 int	check_args(int argc, char **argv)
 {
@@ -40,7 +24,7 @@ int	check_args(int argc, char **argv)
 	i = 1;
 	while (argv[i])
 	{
-		if (!_is_str_numeric(argv[i]))
+		if (!is_str_numeric(argv[i]))
 		{
 			printf("Error.\nOnly numeric arguments are allowed.\n");
 			return (0);

@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:36:26 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 12:08:47 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:27:00 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,20 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (sgn * res);
+}
+
+int	is_str_numeric(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
 }

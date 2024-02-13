@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:30:24 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 16:55:48 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:10:52 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ int					check_malloc(char *msg, t_args *args, t_philo *philo,
 
 /* ###@ UTILS */
 int					ft_atoi(const char *str);
+int					is_str_numeric(char *str);
 
 /* ###@ THREADS */
-void				*thread_routine(void *data);
+int					process_threads(t_args *args);
+
+/* ###@ PHILOS */
+int					init_philos(t_args *args, t_philo *philo);
 
 #endif
