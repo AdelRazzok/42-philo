@@ -6,13 +6,27 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:21:41 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 11:35:53 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/13 16:53:37 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	_is_str_numeric(char *str);
+static int	_is_str_numeric(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
 int	check_args(int argc, char **argv)
 {
@@ -28,7 +42,12 @@ int	check_args(int argc, char **argv)
 	{
 		if (!_is_str_numeric(argv[i]))
 		{
-			printf("Error.\nOnly numeric arguments alowed.\n");
+			printf("Error.\nOnly numeric arguments are allowed.\n");
+			return (0);
+		}
+		if (ft_atoi(argv[i]) <= 0)
+		{
+			printf("Error.\nOnly positive values are allowed.\n");
 			return (0);
 		}
 		i++;
@@ -36,16 +55,17 @@ int	check_args(int argc, char **argv)
 	return (1);
 }
 
-static int	_is_str_numeric(char *str)
+int	check_malloc(char *msg, t_args *args, t_philo *philo, int is_alloc)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (is_alloc)
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (0);
-		i++;
+		if (args->fork)
+			free(args->fork);
+		if (args->death)
+			free(args->death);
+		if (philo)
+			free(philo);
 	}
+	printf("Error.\n%s\n", msg);
 	return (1);
 }

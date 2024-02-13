@@ -6,57 +6,64 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:29:52 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 12:14:13 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/13 16:55:14 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	_init_agrs(char **argv, t_args *args)
+static int	_init_mutex(t_args *args)
 {
 	int	i;
 
 	i = 0;
-	while (argv[i])
+	args->fork = NULL;
+	args->death = NULL;
+	args->fork = malloc(sizeof(pthread_mutex_t) * args->nb_philos);
+	if (!args->fork)
+		return (check_malloc("Fork malloc failed.", args, NULL, 1));
+	args->death = malloc(sizeof(pthread_mutex_t));
+	if (!args->death)
+		return (check_malloc("Death malloc failed.", args, NULL, 1));
+	while (i < args->nb_philos)
 	{
-		if (i == 1)
-			args->nb_philos = ft_atoi(argv[i]);
-		else if (i == 2)
-			args->time_to_die = ft_atoi(argv[i]);
-		else if (i == 3)
-			args->time_to_eat = ft_atoi(argv[i]);
-		else if (i == 4)
-			args->time_to_sleep = ft_atoi(argv[i]);
-		else if (i == 5)
-			args->nb_each_philo_eat = ft_atoi(argv[i]);
+		if (pthread_mutex_init(&args->fork[i], NULL) == -1)
+			return (check_malloc("Fork mutex init failed.", args, NULL, 1));
 		i++;
 	}
+	if (pthread_mutex_init(args->death, NULL) == -1)
+		return (check_malloc("Death mutex init failed.", args, NULL, 1));
 	return (0);
 }
 
-static void	_process_threads(t_args *args, pthread_t *thread1,
-		pthread_t *thread2)
+static int	_init_agrs(char **argv, t_args *args)
 {
-	(void)args;
-	pthread_create(thread1, NULL, &thread_routine, NULL);
-	pthread_create(thread2, NULL, &thread_routine, NULL);
-	pthread_join(*thread1, NULL);
-	pthread_join(*thread2, NULL);
+	int	mutex;
+
+	mutex = -1;
+	args->nb_philos = ft_atoi(argv[1]);
+	args->time_to_die = ft_atoi(argv[2]);
+	args->time_to_eat = ft_atoi(argv[3]);
+	args->time_to_sleep = ft_atoi(argv[4]);
+	args->nb_meals = -1;
+	args->is_nb_meals = 0;
+	if (argv[5])
+	{
+		args->nb_meals = ft_atoi(argv[5]);
+		args->is_nb_meals = 1;
+	}
+	args->is_over = 0;
+	mutex = _init_mutex(args);
+	return (mutex);
 }
 
 int	main(int argc, char **argv)
 {
-	t_args		*args;
-	pthread_t	thread1;
-	pthread_t	thread2;
+	t_args	args;
 
 	if (!check_args(argc, argv))
 		return (1);
-	args = (t_args *)malloc(sizeof(t_args));
-	if (!args)
+	if (_init_agrs(argv, &args))
 		return (1);
-	_init_agrs(argv, args);
-	_process_threads(args, &thread1, &thread2);
-	free(args);
 	return (0);
 }
