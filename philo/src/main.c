@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:29:52 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 17:26:44 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 15:08:41 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,18 @@ static int	_init_agrs(char **argv, t_args *args)
 	args->time_to_die = ft_atoi(argv[2]);
 	args->time_to_eat = ft_atoi(argv[3]);
 	args->time_to_sleep = ft_atoi(argv[4]);
-	args->nb_meals = -1;
-	args->is_nb_meals = 0;
 	if (argv[5])
 	{
 		args->nb_meals = ft_atoi(argv[5]);
 		args->is_nb_meals = 1;
 	}
+	else
+	{
+		args->nb_meals = -1;
+		args->is_nb_meals = 0;
+	}
 	args->is_over = 0;
+	args->is_ready = 0;
 	mutex = _init_mutex(args);
 	return (mutex);
 }

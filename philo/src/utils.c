@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:36:26 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 17:27:00 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:36:52 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,23 @@ int	is_str_numeric(char *str)
 			return (0);
 		i++;
 	}
+	return (1);
+}
+
+size_t	get_current_time(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+int	ft_usleep(size_t time)
+{
+	size_t	start;
+
+	start = get_current_time();
+	while (get_current_time() - start < time)
+		usleep(100);
 	return (1);
 }

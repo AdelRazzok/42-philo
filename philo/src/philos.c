@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:08:48 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 17:27:29 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:39:04 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,38 @@ int	init_philos(t_args *args, t_philo *philo)
 		philo[i].args = args;
 		i++;
 	}
+	return (0);
+}
+
+void	*philo_routine(void *ptr)
+{
+	(void)ptr;
+}
+
+int	is_someone_dead(t_philo *philo)
+{
+	size_t	time;
+
+	pthread_mutex_lock(philo->args->death);
+	time = get_current_time() - philo->last_time_ate;
+	if (time >= (size_t)philo->args->time_to_die)
+	{
+		pthread_mutex_unlock(philo->args->death);
+		// TODO: Print
+		philo->args->is_over = 1;
+		philo->is_dead = 1;
+		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
+		return (1);
+	}
+	pthread_mutex_unlock(philo->args->death);
+	return (0);
+}
+
+int	is_someone_full(t_philo *philo, int current)
+{
+	if (philo->args->is_nb_meals && current == philo->args->nb_philos - 1
+		&& philo->nb_time_ate == philo->args->nb_meals)
+		return (ft_usleep(300));
 	return (0);
 }

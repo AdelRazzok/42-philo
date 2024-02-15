@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:30:24 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 17:10:52 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 16:39:22 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <unistd.h>
 
 typedef struct s_args
 {
@@ -27,6 +28,7 @@ typedef struct s_args
 	int				nb_meals;
 	int				is_nb_meals;
 	int				is_over;
+	int				is_ready;
 	size_t			start_time;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*death;
@@ -53,11 +55,16 @@ int					check_malloc(char *msg, t_args *args, t_philo *philo,
 /* ###@ UTILS */
 int					ft_atoi(const char *str);
 int					is_str_numeric(char *str);
+size_t				get_current_time(void);
+int					ft_usleep(size_t time);
 
 /* ###@ THREADS */
 int					process_threads(t_args *args);
 
 /* ###@ PHILOS */
 int					init_philos(t_args *args, t_philo *philo);
+void				*philo_routine(void *ptr);
+int					is_someone_dead(t_philo *philo);
+int					is_someone_full(t_philo *philo, int current);
 
 #endif
