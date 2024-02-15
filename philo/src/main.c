@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:29:52 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 15:08:41 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:07:06 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	_init_mutex(t_args *args)
 	return (0);
 }
 
-static int	_init_agrs(char **argv, t_args *args)
+static int	_init_args(char **argv, t_args *args)
 {
 	int	mutex;
 
@@ -57,6 +57,7 @@ static int	_init_agrs(char **argv, t_args *args)
 	}
 	args->is_over = 0;
 	args->is_ready = 0;
+	args->start_time = 0;
 	mutex = _init_mutex(args);
 	return (mutex);
 }
@@ -67,7 +68,7 @@ int	main(int argc, char **argv)
 
 	if (!check_args(argc, argv))
 		return (1);
-	if (_init_agrs(argv, &args))
+	if (_init_args(argv, &args))
 		return (1);
 	if (process_threads(&args))
 		return (1);

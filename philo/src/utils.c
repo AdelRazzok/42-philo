@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:36:26 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 17:10:17 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:50:52 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ int	ft_usleep(size_t time)
 	size_t	start;
 
 	start = get_current_time();
-	while (get_current_time() - start < time)
-		usleep(100);
+	while ((get_current_time() - start) < time)
+		usleep(150);
 	return (1);
 }
 

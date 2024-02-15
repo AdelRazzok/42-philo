@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:30:24 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 17:11:46 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:17:06 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,8 @@ int					init_philos(t_args *args, t_philo *philo);
 void				*philo_routine(void *ptr);
 int					is_someone_dead(t_philo *philo);
 int					is_someone_full(t_philo *philo, int current);
+
+/* ###@ ROUTINE */
+void				*philo_routine(void *ptr);
 
 #endif

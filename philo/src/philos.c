@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:08:48 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 17:12:36 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:21:27 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,13 @@ int	init_philos(t_args *args, t_philo *philo)
 		philo[i].is_dead = 0;
 		philo[i].nb_time_ate = 0;
 		philo[i].thread_start = 0;
-		philo[i].last_time_ate = get_current_time();
+		philo[i].last_time_ate = 0;
 		philo[i].left_fork = &args->fork[i];
 		philo[i].right_fork = 0;
 		philo[i].args = args;
 		i++;
 	}
 	return (0);
-}
-
-void	*philo_routine(void *ptr)
-{
-	(void)ptr;
 }
 
 int	is_someone_dead(t_philo *philo)
@@ -59,7 +54,8 @@ int	is_someone_dead(t_philo *philo)
 
 int	is_someone_full(t_philo *philo, int current)
 {
-	if (philo->args->is_nb_meals && current == philo->args->nb_philos - 1
+	if (philo->args->is_nb_meals
+		&& current == philo->args->nb_philos - 1
 		&& philo->nb_time_ate == philo->args->nb_meals)
 		return (ft_usleep(300));
 	return (0);

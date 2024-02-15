@@ -7,7 +7,7 @@ OBJ_DIR       = obj/
 CC            = gcc
 CFLAGS        = -Wall -Wextra -Werror -pthread -fsanitize=thread -g
 
-SRC_FILES     = main error utils threads
+SRC_FILES     = main error utils threads philos routine
 
 SRC           = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ           = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

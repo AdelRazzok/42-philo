@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 11:53:00 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 17:13:43 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 19:17:30 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static int	_init_threads(t_args *args, t_philo *philo)
 	i = 0;
 	while (i < args->nb_philos)
 	{
-		if (pthread_create(&philo[i].thread, NULL, &philo_routine, &philo[i]))
+		philo[i].right_fork = philo[(i + 1) % args->nb_philos].left_fork;
+		if (pthread_create(&philo[i].thread,
+				NULL, &philo_routine, &philo[i]) == -1)
 			return (check_malloc("Thread creation failed.", args, philo, 1));
 		i++;
 	}
@@ -83,9 +85,8 @@ int	process_threads(t_args *args)
 	t_philo	*philo;
 
 	philo = malloc(sizeof(t_philo) * args->nb_philos);
-	if (!philo)
-		return (check_malloc("Philo malloc failed.", args, NULL, 1));
-	init_philos(args, philo);
+	if (!philo || init_philos(args, philo))
+		return (1);
 	if (_init_threads(args, philo))
 		return (1);
 	_control_threads(args, philo);
