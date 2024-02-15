@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:08:48 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 16:39:04 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:12:36 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	is_someone_dead(t_philo *philo)
 	if (time >= (size_t)philo->args->time_to_die)
 	{
 		pthread_mutex_unlock(philo->args->death);
-		// TODO: Print
+		print_action(philo, "died");
 		philo->args->is_over = 1;
 		philo->is_dead = 1;
 		pthread_mutex_unlock(philo->left_fork);

@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 11:53:00 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 16:48:01 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:13:43 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,15 @@ static int	_control_threads(t_args *args, t_philo *philo)
 				args->is_over = 1;
 			i++;
 		}
-		if (args->is_nb_meals
-			&& philo[args->nb_philos - 1].nb_time_ate == args->nb_meals)
-		{
-			ft_usleep(args->nb_philos * 5);
-			printf("\nAll philos ate %d times\n", args->nb_meals);
-			// TODO: Dernier print + return
-		}
-		// TODO: Dernier print + return
 	}
+	if (args->is_nb_meals
+		&& philo[args->nb_philos - 1].nb_time_ate == args->nb_meals)
+	{
+		ft_usleep(args->nb_philos * 5);
+		printf("\nAll philos ate %d times\n", args->nb_meals);
+		return (printf("\nNO ONE DIED! ;D\n"));
+	}
+	return (printf("\nSOMEONE DIED! :(\n"));
 }
 
 static void	_kill_threads(t_args *args, t_philo *philo)

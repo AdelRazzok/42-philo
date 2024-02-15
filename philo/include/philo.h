@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:30:24 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 16:39:22 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/15 17:11:46 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int					ft_atoi(const char *str);
 int					is_str_numeric(char *str);
 size_t				get_current_time(void);
 int					ft_usleep(size_t time);
+void				print_action(t_philo *philo, char *action);
 
 /* ###@ THREADS */
 int					process_threads(t_args *args);
