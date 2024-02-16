@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 11:53:00 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 19:17:30 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:06:18 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	_init_threads(t_args *args, t_philo *philo)
 		philo[i].last_time_ate = args->start_time;
 		i++;
 	}
-	args->is_ready = 1;
+	set_is_ready(args, 1);
 	return (0);
 }
 
@@ -41,7 +41,7 @@ static int	_control_threads(t_args *args, t_philo *philo)
 {
 	int	i;
 
-	while (!args->is_ready)
+	while (!get_is_ready(args))
 		continue ;
 	while (!args->is_over)
 	{

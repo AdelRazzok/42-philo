@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:30:24 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 17:17:06 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:02:44 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_args
 	size_t			start_time;
 	pthread_mutex_t	*fork;
 	pthread_mutex_t	*death;
+	pthread_mutex_t	is_ready_m;
 }					t_args;
 
 typedef struct s_philo
@@ -58,6 +59,10 @@ int					is_str_numeric(char *str);
 size_t				get_current_time(void);
 int					ft_usleep(size_t time);
 void				print_action(t_philo *philo, char *action);
+
+/* ###@ MUTEX */
+int					get_is_ready(t_args *args);
+void				set_is_ready(t_args *args, int value);
 
 /* ###@ THREADS */
 int					process_threads(t_args *args);

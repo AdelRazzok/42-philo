@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:16:22 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 20:21:43 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:01:50 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	*philo_routine(void *ptr)
 	t_philo	*philo;
 
 	philo = (t_philo *)ptr;
-	while (!philo->args->is_ready)
+	while (!get_is_ready(philo->args))
 		continue ;
 	if (philo->id % 2 != 0)
 		ft_usleep(philo->args->time_to_eat * 0.5);

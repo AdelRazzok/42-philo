@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:29:52 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 19:07:06 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/16 13:58:09 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static int	_init_mutex(t_args *args)
 	}
 	if (pthread_mutex_init(args->death, NULL) == -1)
 		return (check_malloc("Death mutex init failed.", args, NULL, 1));
+	pthread_mutex_init(&args->is_ready_m, NULL);
 	return (0);
 }
 
