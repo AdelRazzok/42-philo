@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:36:26 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/15 19:50:52 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:57:59 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,15 @@ int	ft_usleep(size_t time)
 
 void	print_action(t_philo *philo, char *action)
 {
-	pthread_mutex_lock(philo->args->death);
-	if (philo->args->is_over)
+	pthread_mutex_lock(&philo->args->death);
+	if (get_is_over(philo->args))
 	{
-		pthread_mutex_unlock(philo->args->death);
+		pthread_mutex_unlock(&philo->args->death);
 		return ;
 	}
 	printf("%lu %d %s\n",
 		get_current_time() - philo->thread_start,
 		philo->id,
 		action);
-	pthread_mutex_unlock(philo->args->death);
+	pthread_mutex_unlock(&philo->args->death);
 }

@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 11:30:24 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/16 16:02:44 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/16 17:35:50 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ typedef struct s_args
 	int				is_ready;
 	size_t			start_time;
 	pthread_mutex_t	*fork;
-	pthread_mutex_t	*death;
+	pthread_mutex_t	death;
 	pthread_mutex_t	is_ready_m;
+	pthread_mutex_t	is_over_m;
 }					t_args;
 
 typedef struct s_philo
@@ -45,6 +46,8 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	is_eating_m;
+	pthread_mutex_t	has_ate_m;
 	t_args			*args;
 }					t_philo;
 
@@ -63,6 +66,8 @@ void				print_action(t_philo *philo, char *action);
 /* ###@ MUTEX */
 int					get_is_ready(t_args *args);
 void				set_is_ready(t_args *args, int value);
+int					get_is_over(t_args *args);
+void				set_is_over(t_args *args, int value);
 
 /* ###@ THREADS */
 int					process_threads(t_args *args);

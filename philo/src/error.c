@@ -6,7 +6,7 @@
 /*   By: arazzok <arazzok@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 18:21:41 by arazzok           #+#    #+#             */
-/*   Updated: 2024/02/13 17:06:05 by arazzok          ###   ########.fr       */
+/*   Updated: 2024/02/16 16:54:01 by arazzok          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	check_malloc(char *msg, t_args *args, t_philo *philo, int is_alloc)
 	{
 		if (args->fork)
 			free(args->fork);
-		if (args->death)
-			free(args->death);
 		if (philo)
 			free(philo);
 	}
