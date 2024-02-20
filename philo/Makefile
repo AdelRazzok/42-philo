@@ -5,7 +5,7 @@ SRC_DIR       = src/
 OBJ_DIR       = obj/
 
 CC            = gcc
-CFLAGS        = -Wall -Wextra -Werror -pthread -fsanitize=thread -g
+CFLAGS        = -Wall -Wextra -Werror -pthread
 
 SRC_FILES     = main error utils threads philos routine mutex_handler
 
